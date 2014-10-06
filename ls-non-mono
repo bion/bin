@@ -1,0 +1,14 @@
+#!/bin/bash
+
+dir=${1-"."}
+format=${2-"aiff"}
+
+find $dir -iname "*.$format" |
+
+while read line
+do
+    if [ ! "$(ffprobe $line 2>&1 | grep '1 channels')" ]
+    then
+        echo $line
+    fi
+done
