@@ -1,8 +1,0 @@
-#!/bin/bash
-
-for f in $(pwd)/*.aiff
-do
-   if [ "$(ffprobe $f 2>&1 | grep "2 channels")" ]; then
-       echo $f
-   fi
-done
