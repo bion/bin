@@ -1,0 +1,16 @@
+#! /bin/bash
+
+target=$1
+intermediate="${target}.tar.gz"
+
+openssl aes-256-cbc -d -in $target -out $intermediate
+
+tar -xzvf $intermediate &> /dev/null
+
+if [ -e "$target" ]
+then
+    rm $intermediate
+    rm $target
+else
+    echo something went wrong...
+fi

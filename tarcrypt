@@ -1,0 +1,11 @@
+#! /bin/bash
+
+target=$1
+intermediate="${target}.tar.gz"
+
+tar -czvf $intermediate $target &> /dev/null
+
+openssl aes-256-cbc -in $intermediate -out ${target}.aes256
+
+rm $intermediate
+rm -rf $target
